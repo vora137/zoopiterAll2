@@ -49,15 +49,15 @@
             <a href="./mypage_main.html" th:href="@{/mypage}">마이페이지</a>
           </li>
           <div class="hd__menu__list1__item list1-item4" id="join">
-            <th:bolck th:if="${session.isEmpty()}">
+            <th:block th:if="${session.isEmpty()}">
               <li><a href="./member_login.html" th:href="@{/login}">로그인</a></li>
               <span>|</span>
               <li><a href="./member_join.html" th:href="@{/members/join}">회원가입</a></li>
-            </th:bolck>
-            <th:bolck th:unless="${session.isEmpty()}">
+            </th:block>
+            <th:block th:unless="${session.isEmpty()}">
               <span th:text="|(${session.loginMember.userNick})님|"></span>
               <li><a href="" th:href="@{/logout}">로그아웃</a></li>
-            </th:bolck>
+            </th:block>
           </div>
         </ul>
         <a href="#" id="hamburger">
@@ -161,8 +161,8 @@
 
             <div class="list-frm">
               <div class="list">이름</div>
-              <input type="text" id="petname-text" maxlength="10" />
-<!--              th:field="*{petName}"-->
+              <input type="text" id="petname-text" maxlength="10" th:field="*{petName}"/>
+<!--              -->
               <ul>
                 <li>한글, 영어, 숫자 최대 10자까지 등록할 수 있어요 :)</li>
               </ul>
@@ -170,22 +170,16 @@
 
             <div class="list-frm">
               <div class="list">반려동물 품종</div>
-              <input type="text" class="my-info" maxlength="15" />
+              <input type="text" class="my-info" maxlength="15" th:field="*{petType}"/>
             </div>
             <div class="list-frm">
               <div class="list">성별</div>
               <input type="radio" name="gender" id="gender_male" value="male" />
-              <label for="gender_male" class="gender_male" data-action="OFF"
+              <label for="gender_male" class="gender_male" data-action="OFF" th:checked="${data.petGender}"
                 >남자</label
               >
-
-              <input
-                type="radio"
-                name="gender"
-                id="gender_female"
-                value="female"
-              />
-              <label for="gender_female" class="gender_female" data-action="ON"
+              <input type="radio" name="gender" id="gender_female" value="female"/>
+              <label for="gender_female" class="gender_female" data-action="ON" th:checked="${data.petGender}"
                 >여자</label
               >
             </div>
