@@ -101,7 +101,7 @@
               <li><a href="./mypage_main.html">보호자 정보관리</a></li>
             </ul>
             <ul>
-              <li><a href="./mypage_pet_reg.html">반려동물 등록</a></li>
+              <li><a href="./mypage_pet_reg.html" th:href="@{/pet/petreg}">반려동물 등록</a></li>
             </ul>
             <ul>
               <li><a href="./mypage_scheduler.html">의료수첩 관리</a></li>
@@ -110,6 +110,7 @@
         </div>
         <!-- 메인컨텐츠 -->
         <div class="mypage_content">
+          <form action="" method="" th:object="${PetDetailForm}">
           <div class="myprofile-top">반려동물 등록</div>
           <div class="myprofile-list">
             <ul class="list-frm">
@@ -161,6 +162,7 @@
             <div class="list-frm">
               <div class="list">이름</div>
               <input type="text" id="petname-text" maxlength="10" />
+<!--              th:field="*{petName}"-->
               <ul>
                 <li>한글, 영어, 숫자 최대 10자까지 등록할 수 있어요 :)</li>
               </ul>
@@ -259,6 +261,7 @@
               </div>
             </div>
           </div>
+          </form>
         </div>
       </main>
       <div class="mn-r"></div>
