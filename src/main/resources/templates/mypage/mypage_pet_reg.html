@@ -116,7 +116,7 @@
           <div class="myprofile-list">
             <ul class="list-frm">
               <div class="list">사진
-                <input type="text" th:placeholder="${session.loginMember.userId}"
+                <input type="text" th:placeholder="${session.loginMember.userId}" style="display:none"
                       th:value="${session.loginMember.userId}" name="userId" id="userId" readonly >
 <!--              <span th:text="${session.loginMember.userId}" ></span>-->
 <!--                th:filed="*{userId}"-->
@@ -152,17 +152,17 @@
 
 
 
-              <!-- <div class="myprofile-button">
-                <button
-                  type="button"
-                  class="btn-frm"
-                  id="btnModify"
-                  onclick="petModify()"
-                  value="confirm"
-                >
-                  완료
-                </button>
-              </div> -->
+<!--               <div class="myprofile-button">-->
+<!--                <button-->
+<!--                  type="button"-->
+<!--                  class="btn-frm"-->
+<!--                  id="btnModify"-->
+<!--                  onclick="petModify()"-->
+<!--                  value="confirm"-->
+<!--                >-->
+<!--                  완료-->
+<!--                </button>-->
+<!--              </div>-->
             </ul>
 
 
@@ -255,7 +255,7 @@
                   type="submit"
                   class="btn-frm"
                   id="btn_modify"
-                  onclick="modify()"
+                  
                   value="confirm"
                 >
                   등록완료

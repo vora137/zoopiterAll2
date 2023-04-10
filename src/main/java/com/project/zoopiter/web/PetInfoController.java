@@ -63,8 +63,9 @@ public class PetInfoController {
 
     String savedPetInfo = petInfoSVC.saveInfo(petInfo);
     redirectAttributes.addAttribute("userId", savedPetInfo);
-    return "redirect:/mypage/pet/{userId}/detail";
-
+//    return "redirect:/mypage/pet/{userId}/detail";
+//    return "mypage/mypage_pet_modify";
+    return "mypage/mypage_main";
   }
 
   // 조회
