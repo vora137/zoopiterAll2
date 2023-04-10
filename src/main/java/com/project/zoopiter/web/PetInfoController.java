@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @Slf4j
 @Controller
-@RequestMapping("/pet")
+@RequestMapping("/mypage")
 @RequiredArgsConstructor
 public class PetInfoController {
   private final PetInfoSVC petInfoSVC;

@@ -101,7 +101,7 @@
               <li><a href="./mypage_main.html">보호자 정보관리</a></li>
             </ul>
             <ul>
-              <li><a href="./mypage_pet_reg.html" th:href="@{/pet/petreg}">반려동물 등록</a></li>
+              <li><a href="./mypage_pet_reg.html" th:href="@{/mypage/petreg}">반려동물 등록</a></li>
             </ul>
             <ul>
               <li><a href="./mypage_scheduler.html">의료수첩 관리</a></li>
@@ -110,7 +110,7 @@
         </div>
         <!-- 메인컨텐츠 -->
         <div class="mypage_content">
-          <form action="" method="" th:object="${PetDetailForm}">
+          <form action="" method="post" th:object="${PetDetailForm}">
           <div class="myprofile-top">반려동물 등록</div>
           <div class="myprofile-list">
             <ul class="list-frm">
@@ -139,6 +139,7 @@
                         type="file"
                         onchange="dropFile.handleFiles(this.files)"
                         accept="image/png, image/jpeg, image/gif"
+                        th:field="*{petImg}"
                       />
                     </div>
                   </div>
@@ -174,33 +175,34 @@
             </div>
             <div class="list-frm">
               <div class="list">성별</div>
-              <input type="radio" name="gender" id="gender_male" value="male" />
-              <label for="gender_male" class="gender_male" data-action="OFF" th:checked="${data.petGender}"
+              <input type="radio" name="gender" id="gender_male" value="M" th:field="*{petGender}"/>
+              <label for="gender_male" class="gender_male" data-action="OFF"
                 >남자</label
               >
-              <input type="radio" name="gender" id="gender_female" value="female"/>
-              <label for="gender_female" class="gender_female" data-action="ON" th:checked="${data.petGender}"
+              <input type="radio" name="gender" id="gender_female" value="F" th:field="*{petGender}"/>
+              <label for="gender_female" class="gender_female" data-action="ON"
                 >여자</label
               >
+<!--              th:checked="${data.petGender}"-->
             </div>
 
             <div class="list-frm">
               <div class="list">생일</div>
-              <input type="date" id="pet-birth" />
+              <input type="date" id="petBirth"  th:field="*{petBirth}"/>
             </div>
             <div class="list-frm">
               <div class="list">입양일</div>
-              <input type="date" id="pet-birth" />
+              <input type="date" id="petDate" th:field="*{petDate}"/>
             </div>
 
             <div class="list-frm">
               <div class="list">중성화 여부</div>
               <!-- 중성화:Neutering -->
-              <input type="radio" name="check0" id="neuYes" value="" />
+              <input type="radio" name="check0" id="neuYes" value="Y" th:field="*{petYn}"/>
               <label for="neuYes" class="check-on" data-action="ON"
                 >중성화 전</label
               >
-              <input type="radio" name="check0" id="neuNo" value="" />
+              <input type="radio" name="check0" id="neuNo" value="N" th:field="*{petYn}"/>
               <label for="neuNo" class="check-off" data-action="OFF"
                 >중성화 후</label
               >
@@ -208,20 +210,20 @@
             <div class="list-frm">
               <div class="list">기초접종 여부</div>
               <!-- vaccine -->
-              <input type="radio" name="check1" id="vacNone" value="" />
+              <input type="radio" name="check1" id="vacNone" value="P0101" th:field="*{petVac}"/>
               <label for="vacNone" class="check-on" data-action="ON"
                 >모름</label
               >
-              <input type="radio" name="check1" id="vacBefore" value="" />
+              <input type="radio" name="check1" id="vacBefore" value="P0102" th:field="*{petVac}"/>
               <label for="vacBefore" class="check-on" data-action="OFF"
                 >접종 전</label
               >
-              <input type="radio" name="check1" id="vacIng" value="" />
+              <input type="radio" name="check1" id="vacIng" value="P0103" th:field="*{petVac}"/>
               <label for="vacIng" class="check-on" data-action="OFF"
                 >접종 중</label
               >
 
-              <input type="radio" name="check1" id="vacAfter" value="" />
+              <input type="radio" name="check1" id="vacAfter" value="P0104" th:field="*{petVac}"/>
               <label for="vacAfter" class="check-on" data-action="OFF"
                 >접종 완료</label
               >
@@ -230,7 +232,7 @@
             <div class="list-frm">
               <div class="list">기타 사항</div>
               <p>
-                <textarea
+                <textarea th:value="${petInfo}" th:text="${petInfo}"
                   name="act-text"
                   placeholder="기타정보를 입력해보세요"
                   cols="40"
