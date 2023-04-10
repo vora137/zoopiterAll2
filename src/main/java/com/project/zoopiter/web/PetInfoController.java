@@ -59,9 +59,11 @@ public class PetInfoController {
     petInfo.setPetVac(petSaveForm.getPetVac());
     petInfo.setPetInfo(petSaveForm.getPetInfo());
 
+    petInfo.setUserId(petSaveForm.getUserId());
+
     String savedPetInfo = petInfoSVC.saveInfo(petInfo);
-    redirectAttributes.addAttribute("id", savedPetInfo);
-    return "redirect:/mypage/pet/{id}/detail";
+    redirectAttributes.addAttribute("userId", savedPetInfo);
+    return "redirect:/mypage/pet/{userId}/detail";
 
   }
 

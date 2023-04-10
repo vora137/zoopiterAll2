@@ -110,11 +110,17 @@
         </div>
         <!-- 메인컨텐츠 -->
         <div class="mypage_content">
-          <form action="" method="post" th:object="${PetDetailForm}">
+          <form action="" method="post"  th:object="${petSaveForm}">
+<!--            th:action="@{mypage/petreg}"-->
           <div class="myprofile-top">반려동물 등록</div>
           <div class="myprofile-list">
             <ul class="list-frm">
-              <div class="list">사진</div>
+              <div class="list">사진
+                <input type="text" th:placeholder="${session.loginMember.userId}"
+                      th:value="${session.loginMember.userId}" name="userId" id="userId" readonly >
+<!--              <span th:text="${session.loginMember.userId}" ></span>-->
+<!--                th:filed="*{userId}"-->
+              </div>
               <div class="list-frm">
                 <div class="myprofile-list-image">
                   <div class="contents">
@@ -246,7 +252,7 @@
             <div class="my-info">
               <div class="myprofile-button">
                 <button
-                  type="button"
+                  type="submit"
                   class="btn-frm"
                   id="btn_modify"
                   onclick="modify()"
