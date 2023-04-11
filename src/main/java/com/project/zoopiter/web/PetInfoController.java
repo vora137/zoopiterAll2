@@ -135,7 +135,7 @@ public class PetInfoController {
     // 데이터 검증
     if(bindingResult.hasErrors()){
       log.info("bindingResult={}",bindingResult);
-      return "mypage/mypage_pet_reg";
+      return "mypage/mypage_pet_modify";
     }
 
     PetInfo petInfo = new PetInfo();

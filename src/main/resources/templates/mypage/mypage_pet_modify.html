@@ -139,8 +139,7 @@
               <div class="list">사진
                 <input type="text" th:placeholder="${session.loginMember.userId}" style="display:none"
                        th:value="${session.loginMember.userId}" name="userId" id="userId" readonly >
-                <input type="text" th:placeholder="${session.loginMember.userId}"
-                       th:value="${session.loginMember.userId}" name="petNum" id="petNum" readonly >
+                <input type="text" th:field="*{petNum}" name="petNum" id="petNum" readonly >
                 <!--              <span th:text="${session.loginMember.userId}" ></span>-->
                 <!--                th:filed="*{userId}"-->
               </div>
