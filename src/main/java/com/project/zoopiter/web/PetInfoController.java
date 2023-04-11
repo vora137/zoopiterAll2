@@ -121,7 +121,7 @@ public class PetInfoController {
 
     model.addAttribute("updateForm",updateForm);
 
-    return "../static/html/pet_modify";
+    return "/mypage/mypage_pet_modify";
   }
 
   // 수정
