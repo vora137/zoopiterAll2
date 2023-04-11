@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 public class PetUpdateForm {
   private Long petNum;    // Pet ID
-  private String userId;    // 회원 ID
+//  private String userId;    // 회원 ID
   private byte[] petImg;    // 반려동물 프로필 사진
   private String petType;   //반려동물 품종
   private LocalDate petBirth;    // 반려동물 생일

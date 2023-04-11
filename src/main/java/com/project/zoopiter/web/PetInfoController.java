@@ -106,20 +106,20 @@ public class PetInfoController {
     Optional<PetInfo> findPetInfo = petInfoSVC.findInfo(id);
     PetInfo petInfo = findPetInfo.orElseThrow();
 
-    PetUpdateForm updateForm = new PetUpdateForm();
-    updateForm.setUserId(petInfo.getUserId());
-    updateForm.setPetNum(petInfo.getPetNum());
-    updateForm.setPetImg(petInfo.getPetImg());
-    updateForm.setPetType(petInfo.getPetType());
-    updateForm.setPetBirth(petInfo.getPetBirth());
-    updateForm.setPetGender(petInfo.getPetGender());
-    updateForm.setPetName(petInfo.getPetName());
-    updateForm.setPetYn(petInfo.getPetYn());
-    updateForm.setPetDate(petInfo.getPetDate());
-    updateForm.setPetVac(petInfo.getPetVac());
-    updateForm.setPetInfo(petInfo.getPetInfo());
+    PetUpdateForm petUpdateForm = new PetUpdateForm();
+//    updateForm.setUserId(petInfo.getUserId());
+    petUpdateForm.setPetNum(petInfo.getPetNum());
+    petUpdateForm.setPetImg(petInfo.getPetImg());
+    petUpdateForm.setPetType(petInfo.getPetType());
+    petUpdateForm.setPetBirth(petInfo.getPetBirth());
+    petUpdateForm.setPetGender(petInfo.getPetGender());
+    petUpdateForm.setPetName(petInfo.getPetName());
+    petUpdateForm.setPetYn(petInfo.getPetYn());
+    petUpdateForm.setPetDate(petInfo.getPetDate());
+    petUpdateForm.setPetVac(petInfo.getPetVac());
+    petUpdateForm.setPetInfo(petInfo.getPetInfo());
 
-    model.addAttribute("updateForm",updateForm);
+    model.addAttribute("petUpdateForm",petUpdateForm);
 
     return "/mypage/mypage_pet_modify";
   }
@@ -151,10 +151,12 @@ public class PetInfoController {
     petInfo.setPetVac(petUpdateForm.getPetVac());
     petInfo.setPetInfo(petUpdateForm.getPetInfo());
 
-    petInfoSVC.updateInfo(petNum, petInfo);
-
-    redirectAttributes.addAttribute("id", petNum);
-    return "redirect:/mypage/pet/{id}/detail";
+    String updatedPetInfo = String.valueOf(petInfoSVC.updateInfo(petNum, petInfo));
+    redirectAttributes.addAttribute("id",petNum);
+    return "mypage/mypage_main";
+//    petInfoSVC.updateInfo(petNum, petInfo);
+//    redirectAttributes.addAttribute("id", petNum);
+//    return "redirect:/mypage/pet/{id}/detail";
   }
 
   // 삭제 > 메인으로 이동(보호자정보페이지)
