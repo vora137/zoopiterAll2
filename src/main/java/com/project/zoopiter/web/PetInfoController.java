@@ -163,9 +163,10 @@ public class PetInfoController {
 //  int deleteInfo(Long PetNum);
   @GetMapping("{id}/del")
   public String deleteInfo(@PathVariable("id") Long PetNum){
+//    log.info("petNum={}",PetNum);
     petInfoSVC.deleteInfo(PetNum);
 
-    return "redirect:/mypage_main";
+    return "redirect:/mypage/mypage_main";
   }
 
   // 목록 > ?
