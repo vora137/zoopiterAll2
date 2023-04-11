@@ -75,7 +75,7 @@ public class PetInfoController {
     Model model
   ){
     Optional<PetInfo> findPetInfo = petInfoSVC.findInfo(id);
-    PetInfo petInfo = findPetInfo.orElseThrow();
+    PetInfo petInfo = findPetInfo.orElseThrow(() -> new RuntimeException("PetInfo not found for id: " + id));
 
     PetDetailForm detailForm = new PetDetailForm();
     detailForm.setUserId(petInfo.getUserId());
@@ -92,7 +92,7 @@ public class PetInfoController {
 
     model.addAttribute("detailForm",detailForm);
 
-    return "/mypage/pet_modify";
+    return "/mypage/mypage_pet_detail";
   }
 
 // 수정 pet_modify > 메인으로 이동(보호자정보페이지)

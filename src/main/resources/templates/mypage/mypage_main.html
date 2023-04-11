@@ -19,51 +19,57 @@
   </head>
 
   <body>
-  <div class="wrap">
-    <div class="hd-l"></div>
-    <header class="hd">
-      <nav class="hd__menu">
-        <ul class="hd__menu__list1">
-          <li id="logo">
-            <a href="index.html" th:href="@{/}">
-              <i class="fa-solid fa-dog fa-2x"></i>
-              <h3>슬기로운 반려생활</h3>
-            </a>
-          </li>
-          <li class="hd__menu__list1__item list1-item1">
-            <a href="findBymap.html">펫병원</a>
-            <ul class="hd__menu__list1__item__submenu">
-              <li><a href="findBymap.html">병원찾기</a></li>
-            </ul>
-          </li>
-          <li class="hd__menu__list1__item list1-item2">
-            <a href="#">게시판</a>
-            <ul class="hd__menu__list1__item__submenu">
-              <li><a href="./board_community.html">커뮤니티</a></li>
-              <li><a href="./board_review.html">병원후기</a></li>
-            </ul>
-          </li>
-          <li class="hd__menu__list1__item list1-item3" id="myPage">
-            <a href="./mypage_main.html" th:href="@{/mypage}">마이페이지</a>
-          </li>
-          <div class="hd__menu__list1__item list1-item4" id="join">
-            <th:block th:if="${session.isEmpty()}">
-              <li><a href="./member_login.html" th:href="@{/login}">로그인</a></li>
-              <span>|</span>
-              <li><a href="./member_join.html" th:href="@{/members/join}">회원가입</a></li>
-            </th:block>
-            <th:block th:unless="${session.isEmpty()}">
-              <span th:text="|(${session.loginMember.userNick})님|"></span>
-              <li><a href="" th:href="@{/logout}">로그아웃</a></li>
-            </th:block>
-          </div>
-        </ul>
-        <a href="#" id="hamburger">
-          <i class="fa-solid fa-bars"></i>
-        </a>
-      </nav>
-    </header>
-    <div class="hd-r"></div>
+    <div class="wrap">
+      <div class="hd-l"></div>
+      <header class="hd">
+        <nav class="hd__menu">
+          <ul class="hd__menu__list1">
+            <li id="logo">
+              <a href="index.html" th:href="@{/}">
+                <i class="fa-solid fa-dog fa-2x"></i>
+                <h3>슬기로운 반려생활</h3>
+              </a>
+            </li>
+            <li class="hd__menu__list1__item list1-item1">
+              <a href="findBymap.html">펫병원</a>
+              <ul class="hd__menu__list1__item__submenu">
+                <li><a href="findBymap.html">병원찾기</a></li>
+              </ul>
+            </li>
+            <li class="hd__menu__list1__item list1-item2">
+              <a href="#">게시판</a>
+              <ul class="hd__menu__list1__item__submenu">
+                <li><a href="./board_community.html">커뮤니티</a></li>
+                <li><a href="./board_review.html">병원후기</a></li>
+              </ul>
+            </li>
+            <li class="hd__menu__list1__item list1-item3" id="myPage">
+              <a href="./mypage_main.html" th:href="@{/mypage}">마이페이지</a>
+            </li>
+            <div class="hd__menu__list1__item list1-item4" id="join">
+              <th:block th:if="${session.isEmpty()}">
+                <li>
+                  <a href="./member_login.html" th:href="@{/login}">로그인</a>
+                </li>
+                <span>|</span>
+                <li>
+                  <a href="./member_join.html" th:href="@{/members/join}"
+                    >회원가입</a
+                  >
+                </li>
+              </th:block>
+              <th:block th:unless="${session.isEmpty()}">
+                <span th:text="|(${session.loginMember.userNick})님|"></span>
+                <li><a href="" th:href="@{/logout}">로그아웃</a></li>
+              </th:block>
+            </div>
+          </ul>
+          <a href="#" id="hamburger">
+            <i class="fa-solid fa-bars"></i>
+          </a>
+        </nav>
+      </header>
+      <div class="hd-r"></div>
 
       <div class="fg-l"></div>
       <figure class="fg-banner">
@@ -71,14 +77,35 @@
           <p>마이페이지</p>
           <h2>반가워요</h2>
           <div class="profile-list">
-            <div class="profile-area" onclick="petModify()">
-              <div class="upload-area">
-                <img src="../img/img_profile1.png" alt="" />
+            <div class="profile-list__areas">
+              <div class="profile-area" onclick="petModify()">
+                <div class="upload-area">
+                  <img src="../img/img_profile1.png" alt="" />
+                </div>
+                <div class="upload-area2" id="">
+                  <div class="pet-name">반려동물이름</div>
+                  <div class="pet-info">정보</div>
+                </div>
               </div>
-              <div class="upload-area2" id="">
-                <div class="pet-name">반려동물이름</div>
-                <div class="pet-info">정보</div>
+              <!-- 반려동물 정보 추가 될 부분 -->
+              <!-- <div class="profile-area" onclick="petModify()">
+                <div class="upload-area">
+                  <img src="../img/img_profile1.png" alt="" />
+                </div>
+                <div class="upload-area2" id="">
+                  <div class="pet-name">반려동물이름</div>
+                  <div class="pet-info">정보</div>
+                </div>
               </div>
+              <div class="profile-area" onclick="petModify()">
+                <div class="upload-area">
+                  <img src="../img/img_profile1.png" alt="" />
+                </div>
+                <div class="upload-area2" id="">
+                  <div class="pet-name">반려동물이름</div>
+                  <div class="pet-info">정보</div>
+                </div>
+              </div> -->
             </div>
             <div class="profile-make" onclick="petAdd()">
               <a href="./mypage_pet_reg.html">
@@ -99,7 +126,11 @@
               <li><a href="./mypage_main.html">보호자 정보관리</a></li>
             </ul>
             <ul>
-              <li><a href="./mypage_pet_reg.html" th:href="@{/mypage/petreg}">반려동물 등록</a></li>
+              <li>
+                <a href="./mypage_pet_reg.html" th:href="@{/mypage/petreg}"
+                  >반려동물 등록</a
+                >
+              </li>
             </ul>
             <ul>
               <li><a href="./mypage_scheduler.html">의료수첩 관리</a></li>

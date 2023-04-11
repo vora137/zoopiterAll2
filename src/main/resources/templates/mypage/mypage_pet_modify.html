@@ -73,16 +73,37 @@
           <p>마이페이지</p>
           <h2>반가워요</h2>
           <div class="profile-list">
-            <div class="profile-area" onclick="petModify()">
-              <div class="upload-area">
-                <img src="../img/img_profile1.png" alt="" />
+            <div class="profile-list__areas">
+              <div class="profile-area" onclick="petModify()">
+                <div class="upload-area">
+                  <img src="../img/img_profile1.png" alt="" />
+                </div>
+                <div class="upload-area2" id="">
+                  <div class="pet-name">반려동물이름</div>
+                  <div class="pet-info">정보</div>
+                </div>
               </div>
-              <div class="upload-area2" id="">
-                <div class="pet-name">반려동물이름</div>
-                <div class="pet-info">정보</div>
+              <!-- 반려동물 정보 추가 될 부분 -->
+              <!-- <div class="profile-area" onclick="petModify()">
+                <div class="upload-area">
+                  <img src="../img/img_profile1.png" alt="" />
+                </div>
+                <div class="upload-area2" id="">
+                  <div class="pet-name">반려동물이름</div>
+                  <div class="pet-info">정보</div>
+                </div>
               </div>
+              <div class="profile-area" onclick="petModify()">
+                <div class="upload-area">
+                  <img src="../img/img_profile1.png" alt="" />
+                </div>
+                <div class="upload-area2" id="">
+                  <div class="pet-name">반려동물이름</div>
+                  <div class="pet-info">정보</div>
+                </div>
+              </div> -->
             </div>
-            <div class="profile-make">
+            <div class="profile-make" onclick="petAdd()">
               <a href="./mypage_pet_reg.html">
                 <img src="../img/add_circle.png" alt="" />
               </a>
@@ -108,149 +129,224 @@
             </ul>
           </div>
         </div>
-        <!-- 메인컨텐츠 -->
-        <div class="mypage_content">
+      <!-- 메인컨텐츠 -->
+      <div class="mypage_content">
+        <form action="" method="post"  th:object="${petUpdateForm}">
+          <!--            th:action="@{mypage/petreg}"-->
           <div class="myprofile-top">반려동물 등록</div>
           <div class="myprofile-list">
             <ul class="list-frm">
-              <div class="list">사진</div>
+              <div class="list">사진
+                <input type="text" th:placeholder="${session.loginMember.userId}" style="display:none"
+                       th:value="${session.loginMember.userId}" name="userId" id="userId" readonly >
+                <input type="text" th:placeholder="${session.loginMember.userId}"
+                       th:value="${session.loginMember.userId}" name="petNum" id="petNum" readonly >
+                <!--              <span th:text="${session.loginMember.userId}" ></span>-->
+                <!--                th:filed="*{userId}"-->
+              </div>
               <div class="list-frm">
                 <div class="myprofile-list-image">
                   <div class="contents">
                     <div class="upload-box">
                       <div id="drop-file" class="drag-file">
                         <img
-                          src="../img/img_profile1.png"
-                          alt=""
-                          class="image"
+                            src="../img/img_profile1.png"
+                            alt=""
+                            class="image"
                         />
-                      <li>
-                        <div class="myprofile-list-text">
-                          회원님을 알수있는 사진을 등록해주세요
-                        </div>
-                      </li>
+                        <li>
+                          <div class="myprofile-list-text">
+                            회원님을 알수있는 사진을 등록해주세요
+                          </div>
+                        </li>
                         <img src="" alt="미리보기 이미지" class="preview" />
                       </div>
                       <label class="file-label" for="chooseFile">사진업로드</label>
                       <input
-                        class="file"
-                        id="chooseFile"
-                        type="file"
-                        onchange="dropFile.handleFiles(this.files)"
-                        accept="image/png, image/jpeg, image/gif"
+                          class="file"
+                          id="chooseFile"
+                          type="file"
+                          onchange="dropFile.handleFiles(this.files)"
+                          accept="image/png, image/jpeg, image/gif"
+                          th:field="*{petImg}"
                       />
                     </div>
                   </div>
-
-
-
-              <div class="myprofile-button">
-                <button
-                  type="button"
-                  class="btn-frm"
-                  id="btn-modify"
-                  onclick="modify()"
-                  value="confirm"
-                >
-                  완료
-                </button>
+                </div>
               </div>
             </ul>
 
 
             <div class="list-frm">
-              <div class="list">이름</div>
-              <input type="text" id="petnameText" maxlength="10" />
-              <ul>
-                <li>한글, 영어, 숫자 최대 <br> 10자까지 등록할 수 있어요 :)</li>
-              </ul>
-            </div>
+                <div class="list">이름</div>
+                <input
+                  type="text"
+                  id="petname-text"
+                  maxlength="10"
+                  th:field="*{petName}"
+                />
+                <ul>
+                  <li>한글, 영어, 숫자 최대 10자까지 등록할 수 있어요 :)</li>
+                </ul>
+              </div>
 
-            <div class="list-frm">
-              <div class="list">반려동물 품종</div>
-              <input type="text" class="my-info" maxlength="15" />
-            </div>
-            <div class="list-frm">
-              <div class="list">성별</div>
-              <input type="radio" name="gender" id="genderMale" value="" />
-              <label for="genderMale" class="genderMale" data-action="ON"
-                >남자</label
-              >
+              <div class="list-frm">
+                <div class="list">반려동물 품종</div>
+                <input
+                  type="text"
+                  class="my-info"
+                  maxlength="15"
+                  th:field="*{petType}"
+                />
+              </div>
+              <div class="list-frm">
+                <div class="list">성별</div>
+                <input
+                  type="radio"
+                  name="gender"
+                  id="gender_male"
+                  value="M"
+                  th:field="*{petGender}"
+                />
+                <label for="gender_male" class="gender_male" data-action="OFF"
+                  >남자</label
+                >
+                <input
+                  type="radio"
+                  name="gender"
+                  id="gender_female"
+                  value="F"
+                  th:field="*{petGender}"
+                />
+                <label
+                  for="gender_female"
+                  class="gender_female"
+                  data-action="ON"
+                  >여자</label
+                >
+                <!--              th:checked="${data.petGender}"-->
+              </div>
 
-              <input type="radio" name="gender" id="genderFemale" value=""
-              />
-              <label for="genderFemale" class="genderFemale" data-action="OFF"
-                >여자</label
-              >
-            </div>
+              <div class="list-frm">
+                <div class="list">생일</div>
+                <input type="date" id="petBirth" th:field="*{petBirth}" />
+              </div>
+              <div class="list-frm">
+                <div class="list">입양일</div>
+                <input type="date" id="petDate" th:field="*{petDate}" />
+              </div>
 
-            <div class="list-frm">
-              <div class="list">생일</div>
-              <input type="date" id="petBirth" />
-            </div>
-            <div class="list-frm">
-              <div class="list">입양일</div>
-              <input type="date" id="petBirth" />
-            </div>
+              <div class="list-frm">
+                <div class="list">중성화 여부</div>
+                <!-- 중성화:Neutering -->
+                <input
+                  type="radio"
+                  name="check0"
+                  id="neuYes"
+                  value="Y"
+                  th:field="*{petYn}"
+                />
+                <label for="neuYes" class="check-on" data-action="ON"
+                  >중성화 전</label
+                >
+                <input
+                  type="radio"
+                  name="check0"
+                  id="neuNo"
+                  value="N"
+                  th:field="*{petYn}"
+                />
+                <label for="neuNo" class="check-off" data-action="OFF"
+                  >중성화 후</label
+                >
+              </div>
+              <div class="list-frm">
+                <div class="list">기초접종 여부</div>
+                <!-- vaccine -->
+                <input
+                  type="radio"
+                  name="check1"
+                  id="vacNone"
+                  value="P0101"
+                  th:field="*{petVac}"
+                />
+                <label for="vacNone" class="check-on" data-action="ON"
+                  >모름</label
+                >
+                <input
+                  type="radio"
+                  name="check1"
+                  id="vacBefore"
+                  value="P0102"
+                  th:field="*{petVac}"
+                />
+                <label for="vacBefore" class="check-on" data-action="OFF"
+                  >접종 전</label
+                >
+                <input
+                  type="radio"
+                  name="check1"
+                  id="vacIng"
+                  value="P0103"
+                  th:field="*{petVac}"
+                />
+                <label for="vacIng" class="check-on" data-action="OFF"
+                  >접종 중</label
+                >
 
-            <div class="list-frm">
-              <div class="list">중성화 여부</div>
-              <!-- 중성화:Neutering -->
-              <input type="radio" name="check0" id="neuYes" value="" />
-              <label for="neuYes" class="check-on" data-action="ON"
-                >중성화 전</label
-              >
-              <input type="radio" name="check0" id="neuNo" value="" />
-              <label for="neuNo" class="check-off" data-action="OFF"
-                >중성화 후</label
-              >
-            </div>
-            <div class="list-frm">
-              <div class="list">기초접종 여부</div>
-              <!-- vaccine -->
-              <input type="radio" name="check1" id="vacNone" value="" />
-              <label for="vacNone" class="check-on" data-action="ON"
-                >모름</label
-              >
-              <input type="radio" name="check1" id="vacBefore" value="" />
-              <label for="vacBefore" class="check-on" data-action="OFF"
-                >접종 전</label
-              >
-              <input type="radio" name="check1" id="vacIng" value="" />
-              <label for="vacIng" class="check-on" data-action="OFF"
-                >접종 중</label
-              >
+                <input
+                  type="radio"
+                  name="check1"
+                  id="vacAfter"
+                  value="P0104"
+                  th:field="*{petVac}"
+                />
+                <label for="vacAfter" class="check-on" data-action="OFF"
+                  >접종 완료</label
+                >
+              </div>
 
-              <input type="radio" name="check1" id="vacAfter" value="" />
-              <label for="vacAfter" class="check-on" data-action="OFF"
-                >접종 완료</label
-              >
+              <div class="list-frm">
+                <div class="list">기타 사항</div>
+                <p>
+                  <textarea
+                    th:value="${petInfo}"
+                    th:text="${petInfo}"
+                    name="act-text"
+                    placeholder="기타정보를 입력해보세요"
+                    cols="40"
+                    rows="5"
+                  ></textarea>
+                </p>
+              </div>
             </div>
-
-            <div class="list-frm">
-              <div class="list">기타 사항</div>
-              <p>
-                <textarea
-                  name="act-text"
-                  placeholder="기타정보를 입력해보세요"
-                  cols="40"
-                  rows="5"
-                ></textarea>
-              </p>
-            </div>
-          </div>
           <!-- 등록버튼 -->
           <div class="list-frm">
             <div class="my-info">
               <div class="myprofile-button">
                 <button
-                  type="button"
+                  type="submit"
                   class="btn-frm"
-                  id="btnModify"
-                  onclick="petModify()"
+                  id="btn_modify"
+                  
                   value="confirm"
                 >
-                  수정완료
+                  수정
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="list-frm">
+            <div class="my-info">
+              <div class="myprofile-button">
+                <button
+                  type="submit"
+                  class="btn-frm"
+                  id="btn_del"
+                  
+                  value="confirm"
+                >
+                  삭제
                 </button>
               </div>
             </div>
