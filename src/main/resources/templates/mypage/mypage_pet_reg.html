@@ -80,15 +80,16 @@
       <h2>반가워요</h2>
       <div class="profile-list">
         <div class="profile-list__areas">
-          <div class="profile-area" onclick="petModify()">
-            <div class="upload-area">
-              <img src="../img/img_profile1.png" alt=""/>
-            </div>
-            <div class="upload-area2" id="">
-              <div class="pet-name">반려동물이름</div>
-              <div class="pet-info">정보</div>
-            </div>
-          </div>
+          <th:block th:replace="~{fragment/pet_info::pet}"></th:block>
+<!--          <div class="profile-area" onclick="petModify()">-->
+<!--            <div class="upload-area">-->
+<!--              <img src="../img/img_profile1.png" alt=""/>-->
+<!--            </div>-->
+<!--            <div class="upload-area2" id="">-->
+<!--              <div class="pet-name">반려동물이름</div>-->
+<!--              <div class="pet-info">정보</div>-->
+<!--            </div>-->
+<!--          </div>-->
           <!-- 반려동물 정보 추가 될 부분 -->
           <!-- <div class="profile-area" onclick="petModify()">
             <div class="upload-area">

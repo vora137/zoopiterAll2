@@ -99,14 +99,14 @@ function petModify() {
   });
 }
  /** 삭제 */
-//  const $btn_del = document.getElementById('btn_del');
-//
-//  const btn_del = e => {
-//    if(confirm('삭제 하시겠습니까?')){
-//      globalThis.location.href = `/mypage/${$petNum.value}/del`;
-//    }
-//  }
-//  $btn_del.addEventListener('click',btn_del,false);
+  const $btn_del = document.getElementById('btn_del');
+
+  const btn_del = e => {
+    if(confirm('삭제 하시겠습니까?')){
+      globalThis.location.href = `/mypage/${petNum.value}/del`;
+    }
+  }
+  $btn_del.addEventListener('click',btn_del,false);
 
 // 반려동물 정보 추가(2개이상) 되면 이미지 슬라이드
 $(document).ready(function () {

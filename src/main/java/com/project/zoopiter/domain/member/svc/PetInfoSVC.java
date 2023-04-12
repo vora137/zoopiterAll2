@@ -18,5 +18,5 @@ public interface PetInfoSVC {
   // 삭제
   int deleteInfo(Long petNum);
   // 목록
-  List<PetInfo> findAll();
+  List<PetInfo> findAll(String userId);
 }

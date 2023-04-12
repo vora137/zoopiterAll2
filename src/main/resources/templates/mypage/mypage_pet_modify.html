@@ -15,6 +15,12 @@
       src="https://kit.fontawesome.com/6631aa96e6.js"
       crossorigin="anonymous"
     ></script>
+    <!-- jquery CDN -->
+    <script
+        src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+        crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   </head>
   <!-- 이미지 파일 img 폴더에 넣었습니다. -->
@@ -74,15 +80,16 @@
           <h2>반가워요</h2>
           <div class="profile-list">
             <div class="profile-list__areas">
-              <div class="profile-area" onclick="petModify()">
-                <div class="upload-area">
-                  <img src="../img/img_profile1.png" alt="" />
-                </div>
-                <div class="upload-area2" id="">
-                  <div class="pet-name">반려동물이름</div>
-                  <div class="pet-info">정보</div>
-                </div>
-              </div>
+              <th:block th:replace="~{fragment/pet_info::pet}"></th:block>
+<!--              <div class="profile-area" onclick="petModify()">-->
+<!--                <div class="upload-area">-->
+<!--                  <img src="../img/img_profile1.png" alt="" />-->
+<!--                </div>-->
+<!--                <div class="upload-area2" id="">-->
+<!--                  <div class="pet-name">반려동물이름</div>-->
+<!--                  <div class="pet-info">정보</div>-->
+<!--                </div>-->
+<!--              </div>-->
               <!-- 반려동물 정보 추가 될 부분 -->
               <!-- <div class="profile-area" onclick="petModify()">
                 <div class="upload-area">
@@ -132,6 +139,7 @@
       <!-- 메인컨텐츠 -->
       <div class="mypage_content">
         <form action="" method="post"  th:object="${petUpdateForm}">
+          <input type="hidden" th:field="*{petNum}"  >
           <!--            th:action="@{mypage/petreg}"-->
           <div class="myprofile-top">반려동물 등록</div>
           <div class="myprofile-list">
@@ -299,7 +307,7 @@
           <div class="list-frm">
             <div class="my-info">
               <div class="myprofile-button">
-                <button type="submit" class="btn-frm" id="btn_del" value="confirm">
+                <button type="button" class="btn-frm" id="btn_del" value="confirm">
                   삭제
                 </button>
               </div>
@@ -337,21 +345,17 @@
       <div class="ft-r"></div>
     </div>
     <!-- 햄버거 메뉴 구현 -->
-    <script src="../js/hambuger.js"></script>
+    <script src="../js/hambuger.js" th:src="@{/js/hambuger.js}"></script>
     <!-- my page -->
-    <script src="../js/mypage_pet_modify.js"></script>
-    <script src="../js/mypage_main.js"></script>
+    <script src="../js/mypage_pet_modify.js" th:src="@{/js/mypage_pet_modify.js}"></script>
+    <script src="../js/mypage_main.js" th:src="@{/js/mypage_main.js}"></script>
   </body>
-      <!-- jquery CDN -->
-    <script
-      src="https://code.jquery.com/jquery-3.6.4.min.js"
-      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
-      crossorigin="anonymous"
-    ></script>
+
     <script>
       $(function () {
         $('#mypagePcGnb').children().eq(1).find('a').addClass('on');
       });
+
     </script>
 
 </html>

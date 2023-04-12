@@ -5,6 +5,9 @@ import com.project.zoopiter.domain.member.svc.PetInfoSVC;
 import com.project.zoopiter.web.form.pet.PetDetailForm;
 import com.project.zoopiter.web.form.pet.PetSaveForm;
 import com.project.zoopiter.web.form.pet.PetUpdateForm;
+import com.project.zoopiter.web.login.LoginMember;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +26,18 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PetInfoController {
   private final PetInfoSVC petInfoSVC;
+
+  @ModelAttribute("petInfos")
+  public List<PetInfo> getPetInfo(HttpServletRequest request){
+    List<PetInfo> petInfos = null;
+    HttpSession session = request.getSession(false);
+    if(session != null) {
+      LoginMember loginMember = (LoginMember)session.getAttribute(SessionConst.LOGIN_MEMBER);
+      petInfos = petInfoSVC.findAll(loginMember.getUserId());
+    }
+    return petInfos;
+  }
+
 // 등록 pet_reg
   // 등록양식
   @GetMapping("/petreg")
@@ -65,7 +80,8 @@ public class PetInfoController {
     redirectAttributes.addAttribute("userId", savedPetInfo);
 //    return "redirect:/mypage/pet/{userId}/detail";
 //    return "mypage/mypage_pet_modify";
-    return "mypage/mypage_main";
+    log.info("savedPetInfo={}",savedPetInfo);
+    return "redirect:/mypage";
   }
 
   // 조회
@@ -92,7 +108,7 @@ public class PetInfoController {
 
     model.addAttribute("detailForm",detailForm);
 
-    return "/mypage/mypage_pet_detail";
+    return "mypage/mypage_pet_detail";
   }
 
 // 수정 pet_modify > 메인으로 이동(보호자정보페이지)
@@ -121,7 +137,7 @@ public class PetInfoController {
 
     model.addAttribute("petUpdateForm",petUpdateForm);
 
-    return "/mypage/mypage_pet_modify";
+    return "mypage/mypage_pet_modify";
   }
 
   // 수정
@@ -153,7 +169,7 @@ public class PetInfoController {
 
     String updatedPetInfo = String.valueOf(petInfoSVC.updateInfo(petNum, petInfo));
     redirectAttributes.addAttribute("id",petNum);
-    return "mypage/mypage_main";
+    return "redirect:/mypage";
 //    petInfoSVC.updateInfo(petNum, petInfo);
 //    redirectAttributes.addAttribute("id", petNum);
 //    return "redirect:/mypage/pet/{id}/detail";
@@ -166,16 +182,16 @@ public class PetInfoController {
 //    log.info("petNum={}",PetNum);
     petInfoSVC.deleteInfo(PetNum);
 
-    return "redirect:/mypage/mypage_main";
+    return "redirect:/mypage";
   }
 
   // 목록 > ?
 //  List<PetInfo> findInfo();
   @GetMapping
-  public String findAll(Model model){
-    List<PetInfo> petInfo = petInfoSVC.findAll();
-    model.addAttribute("petInfo",petInfo);
+  public String findAll(){
 
-    return "/mypage/mypage_main";
+    return "mypage/mypage_main";
   }
+
+
 }
