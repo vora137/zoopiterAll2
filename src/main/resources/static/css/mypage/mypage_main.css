@@ -215,6 +215,7 @@ img {
   background-color: #fff;
   box-sizing: border-box;
   margin: auto;
+  border-radius: 6px;
 }
 
 .myprofile-button .btn-frm:hover {
