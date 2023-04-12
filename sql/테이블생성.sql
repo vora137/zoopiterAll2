@@ -82,8 +82,8 @@ alter table UPLOADFILE add constraint  UPLOADFILE_CODE_fk
 --제약조건
 alter table UPLOADFILE modify CODE constraint UPLOADFILE_CODE_nn not null;
 alter table UPLOADFILE modify RID constraint UPLOADFILE_RID_nn not null;
-alter table UPLOADFILE modify STORE_FILENAME constraint UPLOADFILE_STORE_FILENAME_nn not null;
-alter table UPLOADFILE modify UPLOAD_FILENAME constraint UPLOADFILE_UPLOAD_FILENAME_nn not null;
+--alter table UPLOADFILE modify STORE_FILENAME constraint UPLOADFILE_STORE_FILENAME_nn not null;
+--alter table UPLOADFILE modify UPLOAD_FILENAME constraint UPLOADFILE_UPLOAD_FILENAME_nn not null;
 -- not null 제약조건은 add 대신 modify 명령문 사용
 
 --시퀀스 생성

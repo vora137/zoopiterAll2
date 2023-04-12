@@ -116,7 +116,7 @@
     </div>
     <!-- 메인컨텐츠 -->
     <div class="mypage_content">
-      <form action="" method="post" th:object="${petSaveForm}">
+      <form id="myFrm" action="" method="post" th:object="${petSaveForm}">
         <!--            th:action="@{mypage/petreg}"-->
         <div class="myprofile-top">반려동물 등록</div>
         <div class="myprofile-list">
@@ -162,8 +162,9 @@
 
           <div class="list-frm">
             <div class="list">이름</div>
-            <input type="text" id="petname-text" maxlength="10" th:field="*{petName}"/>
+            <input type="text" id="petname-text" minlength="2" maxlength="10" th:field="*{petName}"/>
             <ul>
+              <p class="field-error" th:each="err:${#fields.globalErrors()}" th:text="${err}"> </p>
               <li>한글, 영어, 숫자 최대 10자까지 등록할 수 있어요 :)</li>
             </ul>
           </div>
@@ -288,10 +289,35 @@
     crossorigin="anonymous"
 ></script>
 <script>
-      $(function () {
-        $('#mypagePcGnb').children().eq(1).find('a').addClass('on');
-      });
+// 사이드 메뉴 강조
+  $(function () {
+    $('#mypagePcGnb').children().eq(1).find('a').addClass('on');
+  });
 
+  $(function () {
+    $('#mypagePcGnb').children().eq(1).find('a').addClass('on');
+  });
+
+// 버튼이벤트
+  const add_h = e =>{
+    e.preventDefault();
+
+    const $field_errors = document.querySelectorAll('.field-error');
+
+    const clear = () => Array.from($field_errors).forEach(ele=>ele.textContent='');
+    // 검증
+    if(petName.value.trim().length == 0){
+      const msg = '상품명을 입력하세요';
+      petName.nextElementSibling.textContent = msg;
+      petName.focous();
+      return;
+    } else {
+      clear();
+    }
+    // 전송
+    myFrm.submit();
+  }
+  btnAdd.addEventListener('click',add_h,false);
 
 </script>
 </body>
