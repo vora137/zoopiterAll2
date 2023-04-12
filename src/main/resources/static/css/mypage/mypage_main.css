@@ -75,9 +75,6 @@ button {
   box-sizing: border-box; /*반응형 추가*/
   overflow: hidden;
 }
-.profile-list .profile-list__areas {
-  width: 70%;
-}
 .profile-list .profile-area {
   width: 30%;
 }
@@ -172,7 +169,6 @@ li {
 }
 .profile-list .profile-list__areas {
   display: flex;
-  width: 70%;
 }
 .myprofile-list .list-frm {
   display: flex;

@@ -1,20 +1,4 @@
-function modify({dataset}) {
-  Swal.fire({
-    title: '수정하시겠습니까?',
-    text: '수정페이지로 이동합니다',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#333',
-    cancelButtonColor: '#ffd88f',
-    confirmButtonText: '수정하기',
-    cancelButtonText: '취소하기',
-  }).then(result => {
-    if (result.isConfirmed) {
-//      location.replace('./mypage_main_modify.html');
-    location.replace(`/mypage/${dataset.petNum}/edit`);
-    }
-  });
-}
+
 
 
 

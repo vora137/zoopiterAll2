@@ -75,7 +75,7 @@ button {
   overflow: hidden;
 }
 .profile-list .profile-list__areas {
-  display: flex;width: 70%;
+  display: flex;
 }
 .profile-list .profile-area {
   width: 30%;
