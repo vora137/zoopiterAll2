@@ -82,7 +82,7 @@ function modify() {
   });
 }
 
-function petModify() {
+function petModify({dataset}) {
   Swal.fire({
     title: '수정페이지로 이동하시겠습니까?',
     text: '등록한 반려동물정보를 수정하러 이동합니다',
@@ -94,7 +94,7 @@ function petModify() {
     cancelButtonText: '취소하기',
   }).then(result => {
     if (result.isConfirmed) {
-      location.replace('./mypage_pet_modify.html');
+        location.replace(`/mypage/${dataset.petNum}/edit`);
     }
   });
 }

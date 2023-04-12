@@ -16,6 +16,8 @@ function modify({dataset}) {
   });
 }
 
+
+
 function withdraw() {
   Swal.fire({
     title: '탈퇴하시겠습니까?',
@@ -45,7 +47,6 @@ function petModify({dataset}) {
     cancelButtonText: '취소하기',
   }).then(result => {
     if (result.isConfirmed) {
-//      location.replace('./mypage_pet_modify.html');
         location.replace(`/mypage/${dataset.petNum}/edit`);
     }
   });

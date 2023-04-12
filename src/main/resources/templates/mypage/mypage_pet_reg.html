@@ -80,41 +80,16 @@
       <h2>반가워요</h2>
       <div class="profile-list">
         <div class="profile-list__areas">
+          <!-- 프레그먼트 반영-->
           <th:block th:replace="~{fragment/pet_info::pet}"></th:block>
-<!--          <div class="profile-area" onclick="petModify()">-->
-<!--            <div class="upload-area">-->
-<!--              <img src="../img/img_profile1.png" alt=""/>-->
-<!--            </div>-->
-<!--            <div class="upload-area2" id="">-->
-<!--              <div class="pet-name">반려동물이름</div>-->
-<!--              <div class="pet-info">정보</div>-->
-<!--            </div>-->
-<!--          </div>-->
-          <!-- 반려동물 정보 추가 될 부분 -->
-          <!-- <div class="profile-area" onclick="petModify()">
-            <div class="upload-area">
-              <img src="../img/img_profile1.png" alt="" />
-            </div>
-            <div class="upload-area2" id="">
-              <div class="pet-name">반려동물이름</div>
-              <div class="pet-info">정보</div>
-            </div>
-          </div>
-          <div class="profile-area" onclick="petModify()">
-            <div class="upload-area">
-              <img src="../img/img_profile1.png" alt="" />
-            </div>
-            <div class="upload-area2" id="">
-              <div class="pet-name">반려동물이름</div>
-              <div class="pet-info">정보</div>
-            </div>
-          </div> -->
         </div>
-        <div class="profile-make" onclick="petAdd()">
+
+        <div class="profile-make" onclick="location.replace(`/mypage/petreg`)">
           <a href="./mypage_pet_reg.html">
             <img src="../img/add_circle.png" alt=""/>
           </a>
         </div>
+
       </div>
     </div>
   </figure>
@@ -150,8 +125,8 @@
             <div class="list">
               사진
               <input type="text" th:placeholder="${session.loginMember.userId}" style="display: none"
-                  th:value="${session.loginMember.userId}"
-                  name="userId" id="userId" readonly/>
+                     th:value="${session.loginMember.userId}"
+                     name="userId" id="userId" readonly/>
               <!--              <span th:text="${session.loginMember.userId}" ></span>-->
               <!--                th:filed="*{userId}"-->
             </div>
@@ -196,7 +171,7 @@
 
           <div class="list-frm">
             <div class="list">반려동물 품종</div>
-            <input type="text" class="my-info" maxlength="15" th:field="*{petType}" />
+            <input type="text" class="my-info" maxlength="15" th:field="*{petType}"/>
           </div>
           <div class="list-frm">
             <div class="list">성별</div>
@@ -235,7 +210,7 @@
             <!-- vaccine -->
             <input type="radio" name="check1" id="vacNone" value="P0101" th:field="*{petVac}"/>
             <label for="vacNone" class="check-on" data-action="ON">모름</label>
-            <input type="radio" name="check1" id="vacBefore" value="P0102" th:field="*{petVac}" />
+            <input type="radio" name="check1" id="vacBefore" value="P0102" th:field="*{petVac}"/>
             <label for="vacBefore" class="check-on" data-action="OFF"
             >접종 전</label>
             <input type="radio" name="check1" id="vacIng" value="P0103" th:field="*{petVac}"/>
@@ -249,9 +224,9 @@
             <div class="list">기타 사항</div>
             <p>
               <textarea th:value="${petInfo}" th:text="${petInfo}"
-                  name="act-text"
-                  placeholder="기타정보를 입력해보세요"
-                  cols="40" rows="5">
+                        name="act-text"
+                        placeholder="기타정보를 입력해보세요"
+                        cols="40" rows="5">
               </textarea>
             </p>
           </div>
@@ -317,6 +292,7 @@
       $(function () {
         $('#mypagePcGnb').children().eq(1).find('a').addClass('on');
       });
+
 
 </script>
 </body>

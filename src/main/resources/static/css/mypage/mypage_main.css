@@ -119,7 +119,7 @@ button {
   justify-content: space-evenly;
   left: 140px;
   top: -60px;
-  width: 300px;
+  width: 250px;
   height: 150px;
   max-width: 100%;
   margin-bottom: 24px;
@@ -169,6 +169,10 @@ li {
   align-items: center;
   border-bottom: 2px solid #858585;
   margin-bottom: 30px;
+}
+.profile-list .profile-list__areas {
+  display: flex;
+  width: 70%;
 }
 .myprofile-list .list-frm {
   display: flex;
